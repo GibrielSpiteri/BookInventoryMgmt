@@ -10,7 +10,8 @@ export default function AddBook() {
         e.preventDefault();
 
         if (!isbn) {
-            alert('ISBN is required.');
+            console.log('ISBN is required.');
+            // alert('ISBN is required.');
             return;
         }
 
@@ -19,7 +20,8 @@ export default function AddBook() {
             const libResponse = await fetch(`/api/library/${isbn}`, { method: 'GET', cache: 'no-store' });
             console.log(libResponse);
             if (libResponse.status === 500) {
-                alert('Invalid ISBN');
+                // alert('Invalid ISBN');
+                console.log('ISBN is required.');
                 throw new Error('Couldnt find book');
             }
             const { title, names, cover } = await libResponse.json(),
@@ -39,7 +41,7 @@ export default function AddBook() {
             router.push('/');
         } catch (e) {
             console.log(e);
-            alert('Encountered an error while fetching your book, refresh and try again');
+            // alert('Encountered an error while fetching your book, refresh and try again');
         }
     };
     return (

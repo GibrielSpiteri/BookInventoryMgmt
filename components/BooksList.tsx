@@ -1,19 +1,19 @@
-import RemoveBtn from './RemoveBtn';
+import RemoveBtn from '@/components/RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
-import StarRating from './StarRating';
+import StarRating from '@/components/StarRating';
 import Image from 'next/image';
 
 const getBooks = async () => {
     try {
-        const res = await fetch(`http:localhost:3000/api/books`, {});
+        const res = await fetch(`/api/books`, {});
         if (!res.ok) {
             throw new Error('Failed to fetch books');
         }
         return res.json();
     } catch (e) {
         console.log('Error loading books', e);
-        alert('Encountered an error loading the books list, refresh and try again');
+        // alert('Encountered an error loading the books list, refresh and try again');
     }
 };
 export default async function BooksList() {

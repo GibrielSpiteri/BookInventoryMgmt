@@ -17,8 +17,14 @@ export async function PUT(request: Request, { params }: any) {
 }
 
 export async function GET(request: Request, { params }: any) {
-    const { id } = params;
-    await connectMongoDB();
-    const book = await Book.findOne({ _id: id });
-    return NextResponse.json({ book }, { status: 200 });
+    try {
+        
+        const { id } = params;
+        await connectMongoDB();
+        const book = await Book.findOne({ _id: id });
+        return NextResponse.json({ book }, { status: 200 });
+    } catch (e) {
+        console.error(e);
+        return NextResponse.json({ error: 'e' }, { status: 500 });
+    }
 }

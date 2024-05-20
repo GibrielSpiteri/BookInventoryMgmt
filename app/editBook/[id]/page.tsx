@@ -13,7 +13,7 @@ const getBookById = async (id: string) => {
         return res.json();
     } catch (e) {
         console.error(e);
-        alert('Encountered an error while updating your book, refresh and try again');
+        // alert('Encountered an error while updating your book, refresh and try again');
     }
 };
 
