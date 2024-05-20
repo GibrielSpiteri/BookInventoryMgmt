@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
 import StarRating from '@/components/StarRating';
 import Image from 'next/image';
-
+import { GET } from '@app/api/books';
 const getBooks = async () => {
     try {
-        const res = await fetch(`@app/api/books`, {});
+        // const res = await fetch(`@app/api/books`, {});
+        const res = await GET();
         if (!res.ok) {
             throw new Error('Failed to fetch books');
         }
