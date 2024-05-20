@@ -2,10 +2,14 @@ import RemoveBtn from './RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
 import StarRating from './StarRating';
+import { useRouter } from 'next/navigation';
+const router = useRouter();
 
 const getBooks = async () => {
     try {
-        const res = await fetch('http://localhost:3000/api/books', { cache: 'no-store' });
+        // await new Promise((resolve) => setTimeout(resolve, 3000));
+        const timestamp = new Date().getTime();
+        const res = await fetch(`/api/books?_=${timestamp}`, { cache: 'no-store' });
         if (!res.ok) {
             throw new Error('Failed to fetch books');
         }
@@ -16,10 +20,7 @@ const getBooks = async () => {
     }
 };
 export default async function BooksList() {
-    for (let i = 0; i < 2; i++) {
-        console.log(i);
-        let {} = await getBooks();
-    }
+    router.refresh();
     const { books } = await getBooks();
     return (
         <>

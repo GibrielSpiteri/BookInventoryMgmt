@@ -16,7 +16,7 @@ export default function AddBook() {
 
         try {
             // console.log(`http://openlibrary.org/api/volumes/brief/isbn/${isbn}.json`);
-            const libResponse = await fetch(`http://localhost:3000/api/library/${isbn}`, { method: 'GET', cache: 'no-store' });
+            const libResponse = await fetch(`/api/library/${isbn}`, { method: 'GET', cache: 'no-store' });
             console.log(libResponse);
             if (libResponse.status === 500) {
                 alert('Invalid ISBN');
@@ -25,7 +25,7 @@ export default function AddBook() {
             const { title, names, cover } = await libResponse.json(),
                 notes = '',
                 rating = 0,
-                res = await fetch('http://localhost:3000/api/books', {
+                res = await fetch('/api/books', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,7 +36,9 @@ export default function AddBook() {
             if (!res.ok) {
                 throw new Error('Failed to add book');
             }
+            router.refresh();
             router.push('/');
+            router.refresh();
         } catch (e) {
             console.log(e);
             alert('Encountered an error while fetching your book, refresh and try again');
