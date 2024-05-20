@@ -2,8 +2,6 @@ import RemoveBtn from './RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
 import StarRating from './StarRating';
-import { useRouter } from 'next/navigation';
-const router = useRouter();
 
 const getBooks = async () => {
     try {
@@ -20,7 +18,6 @@ const getBooks = async () => {
     }
 };
 export default async function BooksList() {
-    router.refresh();
     const { books } = await getBooks();
     return (
         <>
