@@ -3,22 +3,37 @@ import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
 import StarRating from '@/components/StarRating';
 import Image from 'next/image';
-import { GET } from '@app/api/books';
-const getBooks = async () => {
-    try {
-        // const res = await fetch(`@app/api/books`, {});
-        const res = await GET();
-        if (!res.ok) {
-            throw new Error('Failed to fetch books');
-        }
-        return res.json();
-    } catch (e) {
-        console.log('Error loading books', e);
-        // alert('Encountered an error loading the books list, refresh and try again');
-    }
-};
+import { useEffect, useState } from 'react';
+
+
+
+
+
+// const getBooks = async () => {
+//     try {
+//         const res = await fetch(`/api/books`, {});\
+//         if (!res.ok) {
+//             throw new Error('Failed to fetch books');
+//         }
+//         return res.json();
+//     } catch (e) {
+//         console.log('Error loading books', e);
+//         // alert('Encountered an error loading the books list, refresh and try again');
+//     }
+// };
 export default async function BooksList() {
-    const { books } = await getBooks();
+    const [books, setItems] = useState([]);
+    useEffect(() => {
+        async function getBooks() {
+          const res = await fetch('/api/books');
+          const data = await res.json();
+          setItems(data);
+        }
+      
+        getBooks();
+      }, []);
+
+    // const { books } = await getBooks();
     return (
         <>
             {books.map((t: { title: string; names: string; cover: string; rating: number; isbn: string; notes: string; _id: string }) => (
