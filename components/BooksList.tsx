@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const getBooks = async () => {
     try {
-        const res = await fetch(`${process.env.VERCEL_URI}/api/books`, {});
+        const res = await fetch(`@app/api/books`, {});
         if (!res.ok) {
             throw new Error('Failed to fetch books');
         }
