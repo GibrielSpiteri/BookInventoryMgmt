@@ -1,7 +1,7 @@
-import RemoveBtn from './RemoveBtn';
+import RemoveBtn from 'RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
-import StarRating from './StarRating';
+import StarRating from 'StarRating';
 import Image from 'next/image';
 
 const getBooks = async () => {
