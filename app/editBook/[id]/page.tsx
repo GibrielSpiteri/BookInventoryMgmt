@@ -2,7 +2,7 @@ import EditBookForm from '@/components/EditBookForm';
 
 const getBookById = async (id: string) => {
     try {
-        const res = await fetch(`/api/books/${id}`, {
+        const res = await fetch(`http:localhost:3000/api/books/${id}`, {
             cache: 'no-store',
         });
 

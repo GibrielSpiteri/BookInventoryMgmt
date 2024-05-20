@@ -2,45 +2,30 @@ import RemoveBtn from '@/components/RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
 import StarRating from '@/components/StarRating';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+// import Image from 'next/image';
 
-
-
-
-
-// const getBooks = async () => {
-//     try {
-//         const res = await fetch(`/api/books`, {});\
-//         if (!res.ok) {
-//             throw new Error('Failed to fetch books');
-//         }
-//         return res.json();
-//     } catch (e) {
-//         console.log('Error loading books', e);
-//         // alert('Encountered an error loading the books list, refresh and try again');
-//     }
-// };
-export default async function BooksList() {
-    const [books, setItems] = useState([]);
-    useEffect(() => {
-        async function getBooks() {
-          const res = await fetch('/api/books');
-          const data = await res.json();
-          setItems(data);
+const getBooks = async () => {
+    try {
+        const res = await fetch(`http:localhost:3000/api/books`, {cache: 'no-store'});
+        if (!res.ok) {
+            throw new Error('Failed to fetch books');
         }
-      
-        getBooks();
-      }, []);
-
-    // const { books } = await getBooks();
+        return res.json();
+    } catch (e) {
+        console.log('Error loading books', e);
+        // alert('Encountered an error loading the books list, refresh and try again');
+    }
+};
+export default async function BooksList() {
+    
+    const { books } = await getBooks();
     return (
         <>
             {books.map((t: { title: string; names: string; cover: string; rating: number; isbn: string; notes: string; _id: string }) => (
                 <div
                     key={t._id}
                     className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start">
-                    <Image
+                    <img
                         src={t.cover}
                         alt="Book Cover"
                         className="w-24 h-auto"

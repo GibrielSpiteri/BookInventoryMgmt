@@ -11,23 +11,23 @@ export default function AddBook() {
 
         if (!isbn) {
             console.log('ISBN is required.');
-            // alert('ISBN is required.');
+            alert('ISBN is required.');
             return;
         }
 
         try {
             // console.log(`http://openlibrary.org/api/volumes/brief/isbn/${isbn}.json`);
-            const libResponse = await fetch(`/api/library/${isbn}`, { method: 'GET', cache: 'no-store' });
+            const libResponse = await fetch(`http://localhost:3000/api/library/${isbn}`, { method: 'GET', cache: 'no-store' });
             console.log(libResponse);
             if (libResponse.status === 500) {
-                // alert('Invalid ISBN');
+                alert('Invalid ISBN');
                 console.log('ISBN is required.');
                 throw new Error('Couldnt find book');
             }
             const { title, names, cover } = await libResponse.json(),
                 notes = '',
                 rating = 0,
-                res = await fetch('/api/books', {
+                res = await fetch('http://localhost:3000/api/books', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

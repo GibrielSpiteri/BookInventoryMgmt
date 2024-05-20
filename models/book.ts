@@ -1,5 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
+
+
 const bookSchema = new Schema(
     {
         title: String,
@@ -7,7 +9,7 @@ const bookSchema = new Schema(
         cover: String,
         isbn: String,
         notes: String,
-        rating: Number,
+        rating: Number
     },
     {
         timestamps: true,

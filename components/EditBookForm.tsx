@@ -12,7 +12,7 @@ export default function EditBookForm({ id, oldrating, notes }: { id: string; old
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const res = await fetch(`/api/books/${id}`, {
+            const res = await fetch(`http://localhost:3000/api/books/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
