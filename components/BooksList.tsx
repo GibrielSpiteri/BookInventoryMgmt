@@ -2,12 +2,11 @@ import RemoveBtn from './RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
 import StarRating from './StarRating';
+import Image from 'next/image';
 
 const getBooks = async () => {
     try {
-        // await new Promise((resolve) => setTimeout(resolve, 3000));
-        const timestamp = new Date().getTime();
-        const res = await fetch(`/api/books?_=${timestamp}`, { cache: 'no-store' });
+        const res = await fetch(`/api/books`, {});
         if (!res.ok) {
             throw new Error('Failed to fetch books');
         }
@@ -22,8 +21,10 @@ export default async function BooksList() {
     return (
         <>
             {books.map((t: { title: string; names: string; cover: string; rating: number; isbn: string; notes: string; _id: string }) => (
-                <div className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start">
-                    <img
+                <div
+                    key={t._id}
+                    className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start">
+                    <Image
                         src={t.cover}
                         alt="Book Cover"
                         className="w-24 h-auto"

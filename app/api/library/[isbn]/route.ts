@@ -15,13 +15,11 @@ export async function GET(request: NextRequest, { params }: any) {
         const firstRecordKey = recordKeys[0];
         // Access the record object using the dynamic key
         const record = data.records[firstRecordKey];
-        // console.log(record);
         const book = record.data;
         const title: string = book.title;
         const authors: [{ url: string; name: string }] = book.authors;
         const names = authors.map((author) => author.name).join(', ');
         const cover: string = book.cover.medium;
-        console.log(cover);
         return NextResponse.json({ title, names, cover }, { status: 200 });
     } catch (error) {
         console.error('Error:', error);

@@ -36,9 +36,7 @@ export default function AddBook() {
             if (!res.ok) {
                 throw new Error('Failed to add book');
             }
-            router.refresh();
             router.push('/');
-            router.refresh();
         } catch (e) {
             console.log(e);
             alert('Encountered an error while fetching your book, refresh and try again');
