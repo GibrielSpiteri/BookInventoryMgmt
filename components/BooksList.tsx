@@ -1,12 +1,12 @@
-import RemoveBtn from './components/RemoveBtn';
+import RemoveBtn from './RemoveBtn';
 import Link from 'next/link';
 import { HiPencilAlt } from 'react-icons/hi';
-import StarRating from './components/StarRating';
+import StarRating from './StarRating';
 import Image from 'next/image';
 
 const getBooks = async () => {
     try {
-        const res = await fetch(`/api/books`, {});
+        const res = await fetch(`http:localhost:3000/api/books`, {});
         if (!res.ok) {
             throw new Error('Failed to fetch books');
         }

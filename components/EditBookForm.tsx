@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
-import StarRating from './components/StarRating';
+import StarRating from './StarRating';
 
 export default function EditBookForm({ id, oldrating, notes }: { id: string; oldrating: number; notes: string }) {
     const [rating, setNewRating] = useState(oldrating);
